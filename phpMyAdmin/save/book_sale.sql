@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 05, 2017 at 02:50 AM
+-- Generation Time: May 08, 2017 at 02:04 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.18
 
@@ -38,7 +38,7 @@ CREATE TABLE `administrators` (
 --
 
 INSERT INTO `administrators` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2017-04-28 23:37:03', '2017-04-28 23:37:03');
+(1, 6, '2017-04-28 23:37:03', '2017-04-28 23:37:03');
 
 -- --------------------------------------------------------
 
@@ -54,6 +54,7 @@ CREATE TABLE `books` (
   `author` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `publisher` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `no_pages` int(10) UNSIGNED NOT NULL,
+  `img` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` int(10) UNSIGNED NOT NULL,
   `condition` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `promotion` varchar(511) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -67,8 +68,8 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`id`, `seller_id`, `category_id`, `title`, `author`, `publisher`, `no_pages`, `price`, `condition`, `promotion`, `quantity`, `in_stock`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Modern Physics for University', 'O.Henry', 'O\'REAl', 1597, 69, 'brand-new', 'none', 1, 1, '2017-04-28 23:30:39', '2017-04-28 23:30:39');
+INSERT INTO `books` (`id`, `seller_id`, `category_id`, `title`, `author`, `publisher`, `no_pages`, `img`, `price`, `condition`, `promotion`, `quantity`, `in_stock`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Modern Physics for University', 'O.Henry', 'O\'REAl', 1597, '', 69, 'brand-new', 'none', 1, 1, '2017-04-28 23:30:39', '2017-04-28 23:30:39');
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,7 @@ CREATE TABLE `sellers` (
 --
 
 INSERT INTO `sellers` (`id`, `user_id`, `contact`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nothing', '2017-04-28 23:38:22', '2017-04-28 23:38:22');
+(1, 6, 'Nothing', '2017-04-28 23:38:22', '2017-04-28 23:38:22');
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,7 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `privilege` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -190,7 +191,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `privilege`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ngm', 'ngominh.hai96@gmail.com', '1234', 'admin', NULL, '2017-04-28 23:35:26', '2017-04-28 23:35:26');
+(6, 'hai', 'ngominh.hai96@gmail.com', '$2y$10$Lw4iG1MSg2OiefEsI0Q8Kec1PAGHSr2E502EY/XgR3440JvgWk0/C', 'admin', 'DFG4TnZmaEfMRaemLQ9Vguqo858K9JXBUkhGK7xnb5YtZRASpcNIHGPDRKrb', '2017-05-08 03:39:08', '2017-05-08 03:39:08');
 
 --
 -- Indexes for dumped tables
@@ -289,7 +290,7 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
