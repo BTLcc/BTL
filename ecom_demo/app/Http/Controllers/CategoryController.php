@@ -5,21 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+
 class CategoryController extends Controller
 {
     //
     public function getInsert()
     {
-      $categories = DB::table('categories') -> get();
+      if(Auth::check())
+      {
+        $categories = DB::table('categories') -> get();
 
-      return view('admin.layout.category.insert', ['categories' => $categories]);
+        return view('admin.layout.category.insert', ['categories' => $categories]);
+      }
+      else
+      {
+        return redirect('admin/login');
+      }
     }
 
     public function postInsert(Request $request)
     {
       $this -> validate($request,
       [
-        'name' => 'required|min:3|max:30||unique:categories,name,'.$category -> id
+        'name' => 'required|min:3|max:30|unique:categories,name'
       ],
       [
         'name.required' => 'Bạn chưa nhập tên thể loại',
@@ -44,17 +53,31 @@ class CategoryController extends Controller
 
     public function getList()
     {
-      $categories = \App\Category :: all();
+      if(Auth::check())
+      {
+        $categories = \App\Category :: all();
 
-      return view('admin.layout.category.list', ['categories' => $categories]);
+        return view('admin.layout.category.list', ['categories' => $categories]);
+      }
+      else
+      {
+        return redirect('admin/login');
+      }
     }
 
     public function getUpdate($id)
     {
-      $categories = DB::table('categories') -> get();
-      $category = \App\Category :: find($id);
+      if(Auth::check())
+      {
+        $categories = DB::table('categories') -> get();
+        $category = \App\Category :: find($id);
 
-      return view('admin.layout.category.update', ['category' => $category, 'categories' => $categories]);
+        return view('admin.layout.category.update', ['category' => $category, 'categories' => $categories]);
+      }
+      else
+      {
+        return redirect('admin/login');
+      }
     }
 
     public function postUpdate($id, Request $request)
@@ -62,7 +85,7 @@ class CategoryController extends Controller
       $category = \App\Category :: find($id);
       $this -> validate($request,
       [
-        'name' => 'required|min:3|max:30||unique:categories,name,'.$category -> id
+        'name' => 'required|min:3|max:30|unique:categories,name,'.$category -> id
       ],
       [
         'name.required' => 'Bạn chưa nhập tên thể loại',
