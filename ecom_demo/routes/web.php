@@ -12,13 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome.welcome');
 });
+
+Route::get('shop', 'ShopController@shop');
 
 Route::get('admin', 'PagesController@admin');
 
 Route::group(['prefix' => 'admin'], function()
 {
+  Route::get('login', 'UserController@getAdminLogin');
+
+  Route::get('logout', 'UserController@getAdminLogout');
+
+  Route::post('login', 'UserController@postAdminLogin');
+
   Route::get('dashboard', 'PagesController@dashboard');
 
   Route::group(['prefix' => 'category'], function()

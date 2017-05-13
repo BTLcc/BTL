@@ -70,7 +70,6 @@
       </li>
       </li>
     <li role="presentation" class="divider"></li>
-    <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li>
   </ul>
   <div class="attribution">Template by <a href="http://www.medialoot.com/item/lumino-admin-bootstrap-template/">Medialoot</a><br/><a href="http://www.glyphs.co" style="color: #333;">Icons by Glyphs</a></div>
 </div><!--/.sidebar-->
